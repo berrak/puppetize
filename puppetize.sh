@@ -23,7 +23,7 @@ function gitclient {
 function dnsmasq {
     clear
     /usr/bin/apt-cache policy dnsmasq | /bin/grep none
-    if ! [ "$?" ]
+    if [ "$?" ]
     then
         echo -e "\t Installing dnsmasq ..."
         /usr/bin/aptitude install dnsmasq
@@ -75,7 +75,7 @@ EOF
 function puppet_agent {
     clear
     /usr/bin/apt-cache policy puppet | /bin/grep none
-    if ! [ "$?" ]
+    if [ "$?" ]
     then
 
         echo -en "\t Enter the ipaddress in dotted-quad notation to Puppet Master host: "
@@ -127,7 +127,7 @@ function puppet_agent {
 function puppet_master {
     clear
     /usr/bin/apt-cache policy puppetmaster | /bin/grep none
-    if ! [ "$?" ]
+    if [ "$?" ]
     then
         echo -e "\t Installing Puppet Master ..."
         /usr/bin/aptitude install puppetmaster
