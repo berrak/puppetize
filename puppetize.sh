@@ -25,8 +25,8 @@ function dnsmasq {
     /usr/bin/apt-cache policy dnsmasq | /bin/grep none
     if [ "$?" ]
     then
-        echo -e "\t Installing dnsmasq ..."
-        /usr/bin/aptitude install dnsmasq
+        echo -e "\t Installing dnsmasq and utilities ..."
+        /usr/bin/aptitude install dnsmasq dnsutils
         
         RESOLVEFILE="/etc/resolv.conf"
         
