@@ -175,8 +175,8 @@ EOF
         
         # Update hosts file
         HOSTS="/etc/hosts"
-        LINE="${MYIPADDRESS}  puppet.${MYDOMAIN_NAME}  puppet\n"
-        if ! [ /bin/grep -Fx $LINE $HOSTS ]
+        LINE="${MYIPADDRESS}  puppet.${MYDOMAIN_NAME}  puppet"
+        if ! [ "/bin/grep -Fx '$LINE' '$HOSTS'" ]
         then
 
             NEWNAME=$HOSTS.`date +%Y%m%d.%H%M.UTC.bak`;
