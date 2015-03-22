@@ -93,7 +93,7 @@ function puppet_agent {
                 /usr/bin/aptitude install puppet facter
                 
                 HOSTS="/etc/hosts"
-                LINE="${PUPPET_SRV_IPADDR}  puppet.${MYDOMAIN_NAME}  puppet\n"
+                LINE="${PUPPET_SRV_IPADDR}  puppet.${MYDOMAIN_NAME}  puppet"
                 if ! [ "/bin/grep -Fx '$LINE' '$HOSTS'" ]
                 then
 
