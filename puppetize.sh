@@ -6,6 +6,7 @@
 MYIPADDRESS=`ip route get 1 | awk '{print $NF;exit}'`
 MYDOMAIN_NAME=`/bin/hostname -d`
 MYHOST_NAME=`/bin/hostname`
+MYNETWORK_IF=`ip addr | grep inet | grep ${MYIPADDRESS} | awk '{print $7;exit}'`
 
 function gitclient {
     clear
@@ -50,12 +51,15 @@ EOF
         echo -e "\t Backed up $DNSMASQ_CONF to $NEWNAME."; 
         cp -p $NEWNAME $DNSMASQ_CONF;
 
+        # Confirm that interface is correct
+        
+        
         cat << EOF > $DNSMASQ_CONF
 bogus-priv
 server=208.67.222.222
 server=208.67.220.220
 interface=lo
-interface=eth0
+interface=${MYNETWORK_IF}
 listen-address=127.0.0.1
 listen-address=${MYIPADDRESS}
 bind-interfaces
@@ -207,7 +211,7 @@ function aptitude_update {
 function menu {
     clear
     echo
-    echo -e     "\t Admin Debian 8 (Jessie) Puppet Pre-Installer at host '$MYIPADDRESS'\n"
+    echo -e     "\t Admin Debian 8 (Jessie) Puppet Pre-Installer at host '$MYIPADDRESS' ($MYNETWORK_IF)\n"
     echo -e     "\t 1. Install Git client (required both for master and agents)"
     echo -e     "\t 2. Install dnsmasq (highly recommended on master)"    
     echo -e     "\t 3. Install Puppet Agent"

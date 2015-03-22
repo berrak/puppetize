@@ -70,6 +70,6 @@ In the second root terminal login to view and sign the request from this request
 
 ### Shell Script Assumptions
 
-Currently, the script assumes that DNS resolves using OpenDNS public ipaddresses and the primary
-network interface is *eth0* when *dnsmasq* is configured in that menu option.
+Currently, the script assumes that DNS resolves using OpenDNS public ipaddresses
+when *dnsmasq* is configured in that menu option.
 
