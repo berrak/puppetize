@@ -9,7 +9,7 @@ MYHOST_NAME=`/bin/hostname`
 
 function gitclient {
     clear
-    /usr/bin/apt-cache policy git | /bin/grep none
+    /usr/bin/apt-cache policy git | /bin/grep -F none
     if ! [ "$?" ]
     then    
         /usr/bin/aptitude install git
@@ -22,7 +22,7 @@ function gitclient {
 
 function dnsmasq {
     clear
-    /usr/bin/apt-cache policy dnsmasq | /bin/grep none
+    /usr/bin/apt-cache policy dnsmasq | /bin/grep -F none
     if [ "$?" ]
     then
         echo -e "\t Installing dnsmasq and utilities ..."
@@ -74,8 +74,8 @@ EOF
 
 function puppet_agent {
     clear
-    /usr/bin/apt-cache policy puppet | /bin/grep none
-    if [ "$?" ]
+    /usr/bin/apt-cache policy puppet | /bin/grep -F none
+    if ! [ "$?" ]
     then
 
         echo -en "\t Enter the ipaddress in dotted-quad notation to Puppet Master host: "
@@ -86,7 +86,7 @@ function puppet_agent {
         if [ "$?" ]
         then
 
-            /usr/bin/apt-cache policy puppetmaster | /bin/grep none
+            /usr/bin/apt-cache policy puppetmaster | /bin/grep -F none
             if [ "$?" ]
             then
                 echo -e "\t Installing Puppet Agent..."
@@ -94,7 +94,7 @@ function puppet_agent {
                 
                 HOSTS="/etc/hosts"
                 LINE="${PUPPET_SRV_IPADDR}  puppet.${MYDOMAIN_NAME}  puppet\n"
-                if ! [ /bin/grep -Fx $LINE $HOSTS ]
+                if ! [ "/bin/grep -Fx '$LINE' '$HOSTS'" ]
                 then
 
                     NEWNAME=$HOSTS.`date +%Y%m%d.%H%M.UTC.bak`;
@@ -126,7 +126,7 @@ function puppet_agent {
 
 function puppet_master {
     clear
-    /usr/bin/apt-cache policy puppetmaster | /bin/grep none
+    /usr/bin/apt-cache policy puppetmaster | /bin/grep -F none
     if [ "$?" ]
     then
         echo -e "\t Installing Puppet Master ..."
