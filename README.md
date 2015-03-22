@@ -7,7 +7,7 @@ but that is not tested.
 
 Download/clone the script with:
 
-
+    $ git clone https://github.com/berrak/puppetize.git
 
 and make the script executable with:
 
