@@ -23,7 +23,7 @@ function gitclient {
 function dnsmasq {
     clear
     /usr/bin/apt-cache policy dnsmasq | /bin/grep -F none
-    if [ "$?" ]
+    if ! [ "$?" ]
     then
         echo -e "\t Installing dnsmasq and utilities ..."
         /usr/bin/aptitude install dnsmasq dnsutils
@@ -127,7 +127,7 @@ function puppet_agent {
 function puppet_master {
     clear
     /usr/bin/apt-cache policy puppetmaster | /bin/grep -F none
-    if [ "$?" ]
+    if ! [ "$?" ]
     then
         echo -e "\t Installing Puppet Master ..."
         /usr/bin/aptitude install puppetmaster
