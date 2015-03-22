@@ -5,7 +5,11 @@ This shell script automates the pre-configuration both for Puppet Master and Age
 This script have been used on Debian 8 (Jessie) hosts. Other distributions may work
 but that is not tested. 
 
-Download/clone the script and make the script executable with:
+Download/clone the script with:
+
+
+
+and make the script executable with:
 
     $ sudo chmod u+x ./puppetize.sh
 
