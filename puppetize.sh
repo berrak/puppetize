@@ -50,9 +50,6 @@ EOF
         mv $DNSMASQ_CONF $NEWNAME;
         echo -e "\t Backed up $DNSMASQ_CONF to $NEWNAME."; 
         cp -p $NEWNAME $DNSMASQ_CONF;
-
-        # Confirm that interface is correct
-        
         
         cat << EOF > $DNSMASQ_CONF
 bogus-priv
@@ -192,6 +189,24 @@ EOF
             echo $LINE >> $HOSTS
         fi
         
+        # Add hiera-configuration
+        HIERA_CONFIG="/etc/puppet/hiera.yaml"
+        echo -e "\t Updating '$HIERA_CONFIG' file in /etc/puppet ..."
+        
+        cat << EOF > $HIERA_CONFIG
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /etc/puppet/hieradata
+:hierarchy:
+  - "node/%{::ipaddress}"
+  - "domain/%{::domain}"
+  - common
+
+EOF
+        echo -e "\t Please modify '$HIERA_CONFIG' file in /etc/puppet ... as you see fit."
+    
         echo -e "\t Puppet Master install done ..."
     else
         echo -e "\t Puppet Master is already installed! Continue with other options."
