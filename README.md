@@ -21,22 +21,22 @@ Following actions are automated, depending on what options are selected.
 
 When selecting *Puppet Agent* on the menu, following happens: 
 
-    * Installs *puppet* and *facter*
-    * Updates */etc/hosts* file - with the actual (prompted) IPv4 address to *Puppet Master*
+    - Installs 'puppet' and 'facter'
+    - Updates '/etc/hosts' file - prompts for IPv4 address to 'Puppet Master'
 
 First select the highly recommended option *dnsmasq*. Then, actions for *Puppet Master*: 
 
-    * Installs *puppetmaster*
-    * Clones *https://github.com/berrak/puppet.git* - the default Debian install is replaced
-    * Configures a new *puppet.conf*
-    * Configures a basic *hiera.yaml* file
-    * Installs *puppet* agent and *facter*, to ensure *Puppet Master* machine is managed
-    * Updates */etc/hosts* file
+    - Installs 'puppetmaster'
+    - Clones 'https://github.com/berrak/puppet.git' - Debian install is replaced
+    - Configures a new 'puppet.conf'
+    - Configures a basic 'hiera.yaml' file
+    - Installs 'puppet' agent and 'facter' (Puppet Master machine is managed)
+    - Updates '/etc/hosts' file
     
-Machine *hosts* file and the Debian default puppet configuration files are backed up.
+The machine *hosts* file and the Debian default puppet configuration files are backed up.
 
 This script have been used on Debian 8 (Jessie) hosts. Other distributions may work
-but that is not tested. 
+but that's not yet tested. 
 
 
 ### How to use it
@@ -80,7 +80,7 @@ For *Puppet Agent* select 9, 1, and 3. For *Puppet Master* select 9, 1, 2, and 4
 
 ### Sign Puppet Master
 
-If required, to recreate any certificates for Puppet Master, stop and start the service again.
+If required, to re-create any certificates for Puppet Master, stop and start the service again.
 
     # /etc/init.d/puppetmaster stop
     # /etc/init.d/puppetmaster start 
@@ -119,7 +119,7 @@ with a *Puppet Master* re-start cycle.
     # cd /var/lib/puppet
     # rm -fr ssl
     
-The last command will wipe all old certificates from puppet store which can be verified by:
+The last command will wipe all old certificates from puppet store, which can be verified by:
 
     # puppet cert list --all
     # /etc/init.d/puppetmaster stop
@@ -132,6 +132,6 @@ for all *Puppet Agents* with the node signature process above.
 
 ### Shell Script Assumptions
 
-Currently, the script assumes that DNS resolves using *OpenDNS* public ipaddresses
-when *dnsmasq* is hard coded in the script in *dnsmasq* menu option.
+Currently, the script assumes that DNS resolves using *OpenDNS* public ipaddresses.
+These are hard coded in the script in the *dnsmasq* menu section.
 
