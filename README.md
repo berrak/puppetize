@@ -5,7 +5,7 @@ This shell script automates the pre-configuration both for Puppet Master and Age
 The target machine initial state is a working install from Debian media or from a
 net-install. For additional information, see Debian official site of all releases:
 
-    https://wiki.debian.org/DebianReleases
+https://wiki.debian.org/DebianReleases
     
 Download the zip-file and extract it with:
 
