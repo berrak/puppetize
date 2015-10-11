@@ -79,16 +79,16 @@ function puppet_agent {
     if [[ $? == 0 ]]
     then
 
-        echo -en "\t Enter the ipaddress in dotted-quad notation to Puppet Master host: "
+        echo -e "\t Enter the ipaddress in dotted-quad notation to Puppet Master host: "
         read PUPPET_SRV_IPADDR
 
         # Test if puppet server ipaddress is reachable
-        /bin/ping -c $PUPPET_SRV_IPADDR
-        if [ "$?" ]
+        /bin/ping -c 1 $PUPPET_SRV_IPADDR
+    if [[ $? == 0 ]]
         then
 
             /usr/bin/apt-cache policy puppetmaster | /bin/grep -F none
-            if [ "$?" ]
+            if [[ $? == 0 ]]
             then
                 echo -e "\t Installing Puppet Agent..."
                 /usr/bin/aptitude install puppet facter
