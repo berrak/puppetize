@@ -1,58 +1,33 @@
 ## A Puppet Pre-Install Shell Script for Debian 8 (Jessie)
 
 This shell script automates the pre-configuration both for Puppet Master and Agents.
+This script have been used on Debian 8 (Jessie) hosts. Other distributions may work
+but that's not yet tested. 
 
 The target machine initial state is a working install from Debian media or from a
 net-install. For additional information, see Debian official site of all releases:
 
 https://wiki.debian.org/DebianReleases
+   
+### Setup   
     
-Download the zip-file and extract it with:
+Login to target host and install git: 
 
-    $ unzip puppetize-master.zip 
-        Archive:  puppetize-master.zip
-           creating: puppetize-master/
-          inflating: puppetize-master/LICENSE.txt  
-          inflating: puppetize-master/README.md  
-          inflating: puppetize-master/puppetize.sh
-    $ cd puppetize-master
-
-Following actions are automated, depending on what options are selected.
-
-When selecting *Puppet Agent* on the menu, following happens: 
-
-    - Installs 'puppet' and 'facter'
-    - Updates '/etc/hosts' file - prompts for IPv4 address to 'Puppet Master'
-
-First select the highly recommended option *dnsmasq*. Then, actions for *Puppet Master*: 
-
-    - Installs 'puppetmaster'
-    - Clones 'https://github.com/berrak/puppet.git' - Debian install is replaced
-    - Configures a new 'puppet.conf'
-    - Configures a basic 'hiera.yaml' file
-    - Installs 'puppet' agent and 'facter' (Puppet Master machine is managed)
-    - Updates '/etc/hosts' file
+    # aptitude install git
     
-The machine *hosts* file and the Debian default puppet configuration files are backed up.
+Clone the repository as an unpriveleged user:
 
-This script have been used on Debian 8 (Jessie) hosts. Other distributions may work
-but that's not yet tested. 
+    $ cd ~    
+    $ git clone https://github.com/berrak/puppetize.git
+    $ cd puppetize
+    
+Ensure script is executable and run like so:
 
+    $ su -c './puppetize.sh'
+    Password: *********
+    
 
 ### How to use it
-
-Make the script executable with:
-
-    $ sudo chmod u+x ./puppetize.sh
-
-Simply run the script like so:
-
-    $ sudo ./puppetize.sh
-
-or run as root:
-
-    # ./puppetize.sh
-    
 
 This opens a menu screen that may look like so:
 
@@ -75,7 +50,29 @@ This opens a menu screen that may look like so:
 </pre>
 
 
-For *Puppet Agent* select 9, 1, and 3. For *Puppet Master* select 9, 1, 2, and 4.
+For *Puppet Agent* select 9, 1, and 3.
+
+For *Puppet Master* select 9, 1, 2, and 4.
+
+### What is automated
+
+Following actions are automated, depending on what options are selected.
+
+When selecting *Puppet Agent* on the menu, following happens: 
+
+    - Installs 'puppet' and 'facter'
+    - Updates '/etc/hosts' file - prompts for IPv4 address to 'Puppet Master'
+
+First select the highly recommended option *dnsmasq*. Then, actions for *Puppet Master*: 
+
+    - Installs 'puppetmaster'
+    - Clones 'https://github.com/berrak/puppet.git' - Debian install is replaced
+    - Configures a new 'puppet.conf'
+    - Configures a basic 'hiera.yaml' file
+    - Installs 'puppet' agent and 'facter' (Puppet Master machine is managed)
+    - Updates '/etc/hosts' file
+    
+The machine *hosts* file and the Debian default puppet configuration files are backed up.
 
 
 ### Sign Puppet Master
