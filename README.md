@@ -53,6 +53,8 @@ This opens a menu screen that may look like so:
 For *Puppet Agent* select 9, 1, and 3.
 
 For *Puppet Master* select 9, 1, 2, and 4.
+Use the highly recommended option *dnsmasq* for *Puppet Master*.
+
 
 ### What is automated
 
@@ -63,7 +65,8 @@ When selecting *Puppet Agent* on the menu, following happens:
     - Installs 'puppet' and 'facter'
     - Updates '/etc/hosts' file - prompts for IPv4 address to 'Puppet Master'
 
-First select the highly recommended option *dnsmasq*. Then, actions for *Puppet Master*: 
+When selecting *Puppet Master* on the menu, following happens:
+
 
     - Installs 'puppetmaster'
     - Clones 'https://github.com/berrak/puppet.git' - Debian install is replaced
