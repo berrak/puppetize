@@ -17,6 +17,7 @@ Login to target host and install git:
     
 Clone the repository as an unpriveleged user:
 
+    # su <user>
     $ cd ~    
     $ git clone https://github.com/berrak/puppetize.git
     $ cd puppetize
